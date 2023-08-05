@@ -1,5 +1,5 @@
 const allowedOrigins = [
-     'https://www.cityhub.vercel.app',
+     'https://cityhub-dashboard.vercel.app/',
 ]
 
 module.exports = allowedOrigins
