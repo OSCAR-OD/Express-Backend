@@ -17,6 +17,7 @@ const getAllUsers = async (req, res) => {
     }
 
     res.json(users)
+   // console.log(users);
 }
 
 // @desc Create new user
