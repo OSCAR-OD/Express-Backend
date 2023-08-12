@@ -103,8 +103,9 @@ const getProfile = async (req, res) => {
     let loggedInUserEmail = req.user.email;
 
     try {
-        if (loggedInUserEmail.endsWith('@employee.ntech.com')) {
-            foundUser = await Employee.findById(loggedInUserId)
+//        if (loggedInUserEmail.endsWith('@employee.ntech.com')) {
+          if (loggedInUserEmail.endsWith('@employee.cityhub.com')) {
+        foundUser = await Employee.findById(loggedInUserId)
             .select('-password').lean().exec();
         } else {
             foundUser = await User.findById(loggedInUserId)
@@ -180,8 +181,9 @@ const updateProfile = async (req, res) => {
     let loggedInUserId = req.user.id;
     let loggedInUserEmail = req.user.email;
     let foundUser;
- if (loggedInUserEmail.endsWith('@employee.ntech.com')) {
-            foundUser = await Employee.findById(loggedInUserId)
+     // if (loggedInUserEmail.endsWith('@employee.ntech.com')) {
+    if (loggedInUserEmail.endsWith('@employee.cityhub.com')) {
+        foundUser = await Employee.findById(loggedInUserId)
             .exec();
         } else {
             foundUser = await User.findById(loggedInUserId)
@@ -200,8 +202,9 @@ const updateProfile = async (req, res) => {
     //     user.password = await bcrypt.hash(password, 10) // salt rounds 
     // }
     let uploadedResponse;
-    if(image && loggedInUserEmail.endsWith('@employee.ntech.com')){
-       uploadedResponse = await cloudinary.uploader.upload(image, {
+      //if(image && loggedInUserEmail.endsWith('@employee.ntech.com')){
+        if(image && loggedInUserEmail.endsWith('@employee.cityhub.com')){
+        uploadedResponse = await cloudinary.uploader.upload(image, {
         upload_preset: "Employee",
         });  
     } else{

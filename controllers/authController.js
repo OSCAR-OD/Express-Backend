@@ -70,7 +70,7 @@ const login = async (req, res) => {
     let foundUser;
 //'@employee.ntech.com' or '@ntech.com' 
  
-if (email.endsWith('@employee.ntech.com')) {
+if (email.endsWith('@employee.cityhub.com')) {
  
         foundUser = await Employee.findOne({ email }).exec();
     } else {
@@ -134,11 +134,14 @@ const refresh = (req, res) => {
             if (err) return res.status(403).json({ message: 'Forbidden' })
             let foundUser;
 
-            if (decoded.email.endsWith('@employee.ntech.com')) {
+//            if (decoded.email.endsWith('@employee.ntech.com')) {
+              if (decoded.email.endsWith('@employee.cityhub.com')) {
+
               foundUser = await Employee.findOne({ email: decoded.email }).exec()
           } else {
               foundUser = await User.findOne({ email: decoded.email }).exec()
           }
+          
           if (!foundUser) return res.status(401).json({ message: 'Unauthorized' })
 
             const accessToken = jwt.sign(
@@ -252,7 +255,8 @@ const forgotPassword = async (req, res) => {
      //const send_to = 'oscardeb2000@gmail.com';
    
      const send_to = user.email;
-   const sent_from = 'Oscar@employee.ntech.com';
+    //const sent_from = 'Oscar@employee.ntech.com';
+    const sent_from = 'Oscar@employee.cityhub.com';
   
   try {
     console.log(resetUrl);
